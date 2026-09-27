@@ -128,6 +128,19 @@
     <div class="card">
 
         <h2>Current Bookings ({{ bookings|length }})</h2>
+        <div class="booking-summary">
+    <h3>Bookings by Facility</h3>
+
+    <ul>
+        {% for facility in facilities %}
+        <li>
+            {{ facility }}:
+            {{ bookings|selectattr("facility", "equalto", facility)|list|length }}
+            booking(s)
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 
         {% if bookings %}
         <ul>
