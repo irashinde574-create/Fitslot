@@ -28,6 +28,16 @@ Open http://localhost:5000
 - /api/bookings : View booking data
 - /health : Application health status
 
+## Live Application
+
+FitSlot is deployed on Render.
+
+Live URL: PASTE_YOUR_REAL_RENDER_URL_HERE
+
+Health Check: PASTE_YOUR_REAL_RENDER_URL_HERE/health
+
 ## CI/CD
-GitHub Actions runs lint, tests and deployment
-steps when code is pushed.
+
+GitHub Actions runs linting and automated tests,
+verifies the build, and triggers Render deployment
+after successful checks on main.
