@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitSlot | Sports Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 25px;
+            color: #172033;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+        .card {
+            background: white;
+            padding: 24px;
+            margin: 18px 0;
+            border-radius: 14px;
+            box-shadow: 0 3px 12px #0001;
+        }
+        h1 { color: #176b50; }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+        }
+        button {
+            background: #176b50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        li { padding: 9px; }
+        footer { text-align: center; margin: 30px; color: #64748b; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>FitSlot</h1>
+    <p>Gym & Sports Facility Booking System</p>
+
+    <div class="card">
+        <h2>Book your slot</h2>
+        <form method="POST" action="/book">
+            <label>Student name</label>
+            <input name="name" placeholder="Enter your name" required>
+
+            <label>Facility</label>
+            <select name="facility" required>
+                {% for f in facilities %}
+                <option value="{{ f }}">{{ f }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Date</label>
+            <input type="date" name="date" min="{{ today }}" required>
+
+            <label>Time slot</label>
+            <select name="slot" required>
+                {% for s in slots %}
+                <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Book Slot</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Current Bookings ({{ bookings|length }})</h2>
+        {% if bookings %}
+        <ul>
+            {% for b in bookings %}
+            <li>
+                {{ b.name }} — {{ b.facility }} —
+                {{ b.date }} — {{ b.slot }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No bookings yet. Reserve your first slot!</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        FitSlot | Running commit: {{ commit }}
+    </footer>
+</div>
+</body>
+</html>
