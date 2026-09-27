@@ -36,10 +36,10 @@ def book():
     if not name:
         return "Please enter your name.", 400
 
-    if facility not in facilities:
+    if facility not in FACILITIES:
         return "Invalid facility selected.", 400
 
-    if slot not in slots:
+    if slot not in SLOTS:
         return "Invalid time slot selected.", 400
     
 
