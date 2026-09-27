@@ -33,9 +33,15 @@ def book():
     facility = request.form.get("facility", "")
     booking_date = request.form.get("date", "")
     slot = request.form.get("slot", "")
+    if not name:
+        return "Please enter your name.", 400
 
-    if not name or facility not in FACILITIES or slot not in SLOTS:
-        return "Invalid booking details", 400
+    if facility not in facilities:
+        return "Invalid facility selected.", 400
+
+    if slot not in slots:
+        return "Invalid time slot selected.", 400
+    
 
     try:
         selected_date = date.fromisoformat(booking_date)
