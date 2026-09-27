@@ -35,14 +35,10 @@ def book():
     slot = request.form.get("slot", "")
     if not name:
         return "Please enter your name.", 400
-
     if facility not in FACILITIES:
         return "Invalid facility selected.", 400
-
     if slot not in SLOTS:
         return "Invalid time slot selected.", 400
-    
-
     try:
         selected_date = date.fromisoformat(booking_date)
         if selected_date < date.today():
